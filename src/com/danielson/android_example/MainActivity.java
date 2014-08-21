@@ -1,14 +1,12 @@
 package com.danielson.android_example;
 
+import java.lang.ref.WeakReference;
+
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class MainActivity extends Activity {
 
@@ -20,6 +18,12 @@ public class MainActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		//Startup our RESTful API call.
+		WeakReference<Context> weakRef = new WeakReference<Context>(MainActivity.this);
+		ExampleAsyncRestCall earc = new ExampleAsyncRestCall(weakRef);
+		earc.execute();
+		
 	}
 
 	@Override
@@ -41,20 +45,4 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
 }
