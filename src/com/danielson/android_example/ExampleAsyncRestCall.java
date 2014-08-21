@@ -46,9 +46,8 @@ public class ExampleAsyncRestCall extends GeneralAsyncTask<String> {
 		}
 		
 		try {
-			//Parse the RESTful call here.
+			//Parse the RESTful data using org.json raw. Would be better to use gson or Jackson here.
 			JSONTokener token = new JSONTokener(result);
-		
 			JSONObject jo = (JSONObject)token.nextValue();
 			
 			if (jo == null) 

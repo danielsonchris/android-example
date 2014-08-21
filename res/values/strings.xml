@@ -4,5 +4,6 @@
     <string name="app_name">Android-Example</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+	<string name="new_fragment_button">Open New Fragment</string>
+	
 </resources>
